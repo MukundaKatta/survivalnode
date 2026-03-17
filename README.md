@@ -18,4 +18,4 @@ npm install
 - **plants**
 
 ## License
-MIT
+© 2026 Officethree Technologies. All Rights Reserved.
