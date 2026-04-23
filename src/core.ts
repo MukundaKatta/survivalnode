@@ -6,7 +6,7 @@ export class SurvivalKit {
   async getfirstaid(opts: Record<string, unknown> = {}): Promise<Record<string, unknown>> {
     this.ops++;
     const s = Date.now();
-    const r = { op: "get_first_aid", processed: true, n: this.ops, keys: Object.keys(opts) };
+    const r = { op: "get_first_aid", ok: true, service: "survivalnode", processed: true, n: this.ops, keys: Object.keys(opts) };
     this.log.push({ op: "get_first_aid", ms: Date.now()-s, t: Date.now() });
     return r;
   }
@@ -48,3 +48,6 @@ export class SurvivalKit {
   getStats() { return { ops: this.ops, logSize: this.log.length }; }
   reset() { this.ops = 0; this.log = []; }
 }
+
+// Survivalnode is the canonical public alias for SurvivalKit
+export { SurvivalKit as Survivalnode };
