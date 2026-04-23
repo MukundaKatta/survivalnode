@@ -11,7 +11,7 @@ npm install
 
 ## Quick Start
 ```typescript
-import { Survivalnode } from "./survivalnode";
+import { Survivalnode } from "./src/core.js";
 const instance = new Survivalnode()
 const r = await instance.getfirstaid({ input: 'test' })
 ```
@@ -34,7 +34,7 @@ npx tsx src/cli.ts run --input "data"
 
 ## Test
 ```bash
-npx vitest
+npm test
 ```
 
 ## License
