@@ -12,14 +12,16 @@ npm install
 ## Quick Start
 ```typescript
 import { Survivalnode } from "./src/core.js";
-const instance = new Survivalnode()
-const r = await instance.getfirstaid({ input: 'test' })
+
+const instance = new Survivalnode();
+const r = await instance.getfirstaid({ input: "test" });
+console.log(r);
 ```
 
-## CLI
+## Examples
 ```bash
-npx tsx src/cli.ts status
-npx tsx src/cli.ts run --input "data"
+npx tsx examples/basic.ts
+npx tsx examples/advanced.ts
 ```
 
 ## API

@@ -11,10 +11,10 @@ async function main() {
   console.log("Result:", JSON.stringify(result, null, 2));
 
   // Run multiple operations
-  const ops = ["getfirstaid", "getsurvivaltip", "translatemorse];
+  const ops = ["getfirstaid", "getsurvivaltip", "translatemorse"];
   for (const op of ops) {
     const r = await (instance as any)[op]({ source: "example" });
-    console.log(`${op}:`, r.ok ? "✓" : "✗");
+    console.log(`${op}:`, r.processed ? "✓" : "✗");
   }
 
   // Check stats

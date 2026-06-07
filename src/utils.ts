@@ -3,18 +3,19 @@ export function generateId(): string {
   return Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 }
 
-export function retry<T>(fn: () => Promise<T>, maxRetries = 3, delayMs = 100): Promise<T> {
-  return new Promise(async (resolve, reject) => {
-    for (let i = 0; i < maxRetries; i++) {
-      try {
-        const result = await fn();
-        return resolve(result);
-      } catch (err) {
-        if (i === maxRetries - 1) return reject(err);
-        await new Promise(r => setTimeout(r, delayMs * Math.pow(2, i)));
-      }
+export async function retry<T>(fn: () => Promise<T>, maxRetries = 3, delayMs = 100): Promise<T> {
+  const attempts = Math.max(1, maxRetries);
+  let lastErr: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastErr = err;
+      if (i === attempts - 1) break;
+      await new Promise(r => setTimeout(r, delayMs * Math.pow(2, i)));
     }
-  });
+  }
+  throw lastErr;
 }
 
 export function sanitizeInput(input: unknown): string {
